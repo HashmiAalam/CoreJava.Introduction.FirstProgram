@@ -1,0 +1,248 @@
+ERP  and what is ERP call
+Port and Domain
+feed file
+public class Test{
+ public static void main(String[] args){
+ System.out.prinln("This is a test program");
+ {
+}
+
+it will include DB setup   working (userName&password b2bb2c)
+VPN setup(Done)
+Hybris Setup(Done)
+Git Setup (Done)
+Phase 1 system update (go in hac--> configuration --> search for ext.dp.import.core.data & ext.dp.import.sample.data and make both true and run system update also select extdpstore)
+BitBucket(Done)
+SourceTree
+MySQL db
+
+DB setup
+step 1) Download form https://vault.pragiti.com/index.php
+      and search for MJ_OracleSetup in this download
+	  winx64_12102_database_1of2
+	   winx64_12102_database_2of2
+	   ExpDB.dump.tar
+	   watch video before setup from link of one drive of Naveen https://asianpaints-my.sharepoint.com/_forms/default.aspx
+	   
+
+Set password as Oracle123
+git config --global http.sslVerify false
+
+Tree-node inside in left panel
+if we create a tab and ckilck it it opens a new window i.e. it opens a type(type is created but I am not able to open it)
+Tree-node :- component="explorer-tree" 
+
+
+
+
+Ticket 248
+
+--> 263 --> details of fly on notification pop-up
+
+-->262 --> To view fly on notification (events like items added to the cart, items added to Favorites, and items added to back in stock list)
+5 events
+ 
+ --> 259
+*Business user shall be able to configure the generic message from the Backoffice. 
+   Generic messages are configured in Hybris back office 
+*Ability to add a URL along with the message and on-click of the URL shall navigate the dealer to the configured URL on the new tab.
+--> 258
+*Generic messages will get auto removed once their expiry date comes. (Expiry date of generic messages will be configured from back office)
+
+*The text first line shall be “SKU ID: W15XXXX is now Back in Stock.” - To show Short SKU ID and if short SKU ID is not present show SKU ID.
+
+*The text shall have the first line as "You have an overdue of Rs XYZ. Please clear your dues immediately.” 
+All the notifications for Back in stock and Payment Overdues shall be fetched from RFC.
+*To see Download file as notification, whenever a file is uploaded by the regional manager.
+*Order updates - 
+1)Order is placed
+2)Invoice is created
+3)Invoice is dispatched 
+
+----------------------
+Generic messages (messages that are configured from Back-office) 
+Details will be covered in APFP-259
+Updates (Order updates, Back in stock, Payment overdue updates)
+Details will be covered in APFP-260, APFP-261
+
+
+
+
+
+
+Task on Back-office
+by Naveen
+     Navigation Node inside Tree-node                         
+1)ProductToSalesOrganizationMapping  (salesOrganization, distributionChannel, division, and productTypeEnum)
+2)LinksGlobalSearch
+3)BackInStockDetails
+
+ <n:navigation-node id="Fabric">
+              <n:type-node id="ProductToSalesOrganizationMapping" code="ProductToSalesOrganizationMapping"/>
+              <n:type-node id="LinksGlobalSearch" code="LinksGlobalSearch"/>
+			  <n:type-node id="BackInStockDetails" code="BackInStockDetails"/>
+            </n:navigation-node>
+
+
+Advance search
+Note:- <itemtype code="B2BUnit" autocreate="false" generate="false">
+       <attribute qualifier="recommendationEnabled"
+						type="java.lang.Boolean">
+						<modifiers optional="true" />
+						<persistence type="property" />
+						<description>This flag is controlled by dealer from frontend</description>
+					</attribute>
+					
+	in items.xml  optional="true" --> in config <as:field name="recommendationEnabled" operator="contains" selected="false"/>
+	
+
+<context merge-by="type" parent="GenericItem" type="ProductToSalesOrganizationMapping" component="advanced-search">
+    <as:advanced-search xmlns:as="http://www.hybris.com/cockpitng/config/advancedsearch" connection-operator="AND">
+        <as:field-list>
+            <as:field name="salesOrganization" operator="contains" selected="true"/>
+            <as:field name="distributionChannel" operator="contains" selected="true"/>
+            <as:field name="division" operator="contains" selected="true"/>
+            <as:field name="productTypeEnum" operator="contains" selected="false"/>
+        </as:field-list>
+    </as:advanced-search>
+	</context>
+localization:-
+already there
+	
+	<context merge-by="type" parent="GenericItem" type="LinksGlobalSearch" component="advanced-search">
+    <as:advanced-search xmlns:as="http://www.hybris.com/cockpitng/config/advancedsearch" connection-operator="AND">
+        <as:field-list>
+            <as:field name="pageID" operator="contains" selected="true"/>
+            <as:field name="pageUrl" operator="contains" selected="true"/>
+            <as:field name="pageDescription" operator="contains" selected="false"/>
+            <as:field name="pageName" operator="contains" selected="false"/>
+        </as:field-list>
+    </as:advanced-search>
+	</context>
+localization:- 
+	already there
+	
+	
+	<context merge-by="type" parent="GenericItem" type="BackInStockDetails" component="advanced-search">
+    <as:advanced-search xmlns:as="http://www.hybris.com/cockpitng/config/advancedsearch" connection-operator="AND">
+        <as:field-list>
+            <as:field name="code" operator="contains" selected="true"/>
+            <as:field name="product" operator="contains" selected="true"/>
+            <as:field name="stockStatus" operator="contains" selected="false"/>
+            <as:field name="plantCode" operator="contains" selected="false"/>
+        </as:field-list>
+    </as:advanced-search>
+	</context>
+localization:-
+type.BackInStockDetails.code.name=Code
+type.BackInStockDetails.product.name=Product
+type.BackInStockDetails.stockStatus.name=Stock Status
+type.BackInStockDetails.plantCode.name=Plant Code
+
+	
+	<context merge-by="type" parent="GenericItem" type="Discount" component="advanced-search">
+    <as:advanced-search xmlns:as="http://www.hybris.com/cockpitng/config/advancedsearch" connection-operator="AND">
+        <as:field-list>
+            <as:field name="quantity" operator="contains" selected="false"/>
+           </as:field-list>
+    </as:advanced-search>
+	</context>
+localization:-
+type.Discount.quantity.name=Quantity
+
+	
+	<context merge-by="type" parent="GenericItem" type="CommunicationMessage" component="advanced-search">
+    <as:advanced-search xmlns:as="http://www.hybris.com/cockpitng/config/advancedsearch" connection-operator="AND">
+        <as:field-list>
+            <as:field name="dataApplicable" operator="contains" selected="false"/>
+           </as:field-list>
+    </as:advanced-search>
+	</context>
+localization:-
+type.CommunicationMessage.dataApplicable.name=Data Applicable
+
+
+	
+	<context merge-by="type" parent="GenericItem" type="ErpOrderDetail" component="advanced-search">
+    <as:advanced-search xmlns:as="http://www.hybris.com/cockpitng/config/advancedsearch" connection-operator="AND">
+        <as:field-list>
+            <as:field name="site" operator="contains" selected="false"/>
+           </as:field-list>
+    </as:advanced-search>
+	</context>
+localization:-
+already there
+
+	
+		<context merge-by="type" parent="GenericItem" type="Product" component="advanced-search">
+    <as:advanced-search xmlns:as="http://www.hybris.com/cockpitng/config/advancedsearch" connection-operator="AND">
+        <as:field-list>
+            <as:field name="isPromotionUpdated" operator="contains" selected="false"/>
+			<as:field name="productTypeEnum" operator="contains" selected="false"/>
+			<as:field name="shortProductName" operator="contains" selected="false"/>
+			<as:field name="oldSKU" operator="contains" selected="false"/>
+			<as:field name="makeToOrder" operator="contains" selected="false"/>
+           </as:field-list>
+    </as:advanced-search>
+	</context>
+localization:-
+type.product.makeToOrder.name=Make To Order
+type.product.productTypeEnum.name=Product Type
+type.product.shortProductName.name=Short Product Name
+
+	
+	<context merge-by="type" parent="GenericItem" type="Category" component="advanced-search">
+    <as:advanced-search xmlns:as="http://www.hybris.com/cockpitng/config/advancedsearch" connection-operator="AND">
+        <as:field-list>
+            <as:field name="isBookCategory" operator="contains" selected="false"/>
+			<as:field name="isBrandCategory" operator="contains" selected="false"/>
+			<as:field name="isParentCategory" operator="contains" selected="false"/>
+			<as:field name="ranking" operator="contains" selected="false"/>
+			</as:field-list>
+    </as:advanced-search>
+	</context>
+localization:-
+type.Category.isParentCategory.name=Parent Category
+
+
+
+<context merge-by="type" parent="GenericItem" type="B2BUnit" component="advanced-search">
+    <as:advanced-search xmlns:as="http://www.hybris.com/cockpitng/config/advancedsearch" connection-operator="AND">
+        <as:field-list>
+            <as:field name="lastBackInStockTime" operator="contains" selected="false"/>
+			</as:field-list>
+    </as:advanced-search>
+	</context>
+localization:-	
+type.B2BUnit.lastBackInStockTime.name=Last Back In Stock Time	
+	
+	simple search
+	ProductToSalesOrganizationMapping --> salesOrganization, distributionChannel and division
+	LinksGlobalSearch -->  pageID
+	BackInStockDetails -->  code
+	
+	
+	<context merge-by="type" parent="GenericItem" type="ProductToSalesOrganizationMapping" component="simple-search">
+        <simple-search:simple-search>
+            <simple-search:field xmlns="http://www.hybris.com/cockpitng/config/simplesearch" name="salesOrganization"/>
+            <simple-search:field xmlns="http://www.hybris.com/cockpitng/config/simplesearch" name="distributionChannel"/>
+			<simple-search:field xmlns="http://www.hybris.com/cockpitng/config/simplesearch" name="division"/>
+        </simple-search:simple-search>
+    </context>
+	
+	
+	<context merge-by="type" parent="GenericItem" type="LinksGlobalSearch" component="simple-search">
+        <simple-search:simple-search>
+            <simple-search:field xmlns="http://www.hybris.com/cockpitng/config/simplesearch" name="pageID"/>
+           </simple-search:simple-search>
+    </context>
+	
+	
+	<context merge-by="type" parent="GenericItem" type="BackInStockDetails" component="simple-search">
+        <simple-search:simple-search>
+            <simple-search:field xmlns="http://www.hybris.com/cockpitng/config/simplesearch" name="code"/>
+            </simple-search:simple-search>
+    </context>
+	
+	
+	type.{itemtype.code}.{attribute.qualifier}.name=name of attribute
