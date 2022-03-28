@@ -1,22 +1,14 @@
-
 public class Test {
 	public static void main(String[] args){
 		System.out.println("Aalam world");
 		int a=10;
-		if(a==21)
-			System.out.println("condition matched");
-		else
-			System.out.println("condition not matched");
+		switch(a){
+			case 10: System.out.println("Case ten");
+			 break;
+			case 12: System.out.println("Case twelve");
+			 break;
+			default : System.out.println("Default case");
+			 break;
+		}
 	}
 }
-
-
-
-
-
-
-
-
-
-
-
