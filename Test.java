@@ -6,7 +6,7 @@ public class Test {
 			//program will fall in infinite condition
 		
 		System.out.println("This is for loop with no break i.e no increment/decrement for condition to become false");
-	
+	break;
 		}
 	}
 }
