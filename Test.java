@@ -4,6 +4,7 @@ public class Test {
 		int i=1;
 		while(i<5){
 		System.out.println("Hi there");  //since there is no break in the progaram loop will fall into infinte condition
+		i++;
 		}
 	}
 }
